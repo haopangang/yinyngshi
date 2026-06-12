@@ -1,0 +1,27 @@
+[project]
+name = "yys-assistant"
+version = "0.1.0"
+description = "阴阳师全自动托管辅助脚本"
+requires-python = ">=3.10"
+dependencies = [
+    "uiautomator2>=3.0",
+    "opencv-python>=4.8",
+    "rapidocr-onnxruntime>=1.3",
+    "apscheduler>=3.10",
+    "pydantic>=2.0",
+    "pyyaml>=6.0",
+    "loguru>=0.7",
+    "typer[all]>=0.9",
+    "httpx>=0.24",
+    "numpy>=1.24",
+]
+
+[project.scripts]
+yys = "cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

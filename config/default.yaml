@@ -1,0 +1,102 @@
+# ============================================================
+# 阴阳师辅助脚本 - 默认配置文件
+# 请勿直接修改此文件，使用 user_config.yaml 覆盖配置
+# ============================================================
+
+# ---------- 设备配置 ----------
+device:
+  serial: null              # 设备序列号，null 表示自动检测
+  adb_path: "adb"           # ADB 路径
+  screenshot_method: "screencap"  # 截图方式: screencap
+
+# ---------- 游戏配置 ----------
+game:
+  package: "com.netease.onmyoji"       # 游戏包名
+  launch_activity: "com.netease.onmyoji.Client"  # 启动 Activity
+  server: "default"                    # 服务器
+
+# ---------- 体力管理 ----------
+stamina:
+  auto_use_sushi: true      # 自动使用寿司恢复体力
+  max_daily_sushi: 10       # 每日最大使用寿司数
+  min_threshold: 100        # 体力最低阈值告警
+
+# ---------- 任务列表 ----------
+tasks:
+  - enabled: true
+    priority: 1
+    max_retry: 3
+    count: 30
+    layer: 10
+    type: "orochi"           # 御魂副本
+
+  - enabled: true
+    priority: 3
+    max_retry: 3
+    count: 20
+    layer: 8
+    type: "awake"            # 觉醒副本
+
+  - enabled: true
+    priority: 5
+    max_retry: 3
+    count: 9
+    layer: 1
+    type: "breakthrough"     # 结界突破
+
+  - enabled: true
+    priority: 5
+    max_retry: 3
+    count: 5
+    layer: 1
+    type: "hyakki"           # 百鬼夜行
+
+  - enabled: true
+    priority: 5
+    max_retry: 3
+    count: 3
+    layer: 1
+    type: "region_boss"      # 地域鬼王
+
+  - enabled: true
+    priority: 7
+    max_retry: 3
+    count: 1
+    layer: 1
+    type: "daily"            # 日常杂项
+
+# ---------- 调度器配置 ----------
+scheduler:
+  enabled: false
+  start_time: "08:00"       # 调度开始时间
+  end_time: "23:00"         # 调度结束时间
+  tasks: []                 # 调度任务列表
+
+# ---------- 通知配置 ----------
+notify:
+  enabled: false
+  channels:
+    - type: "wxpusher"      # 通知类型: wxpusher / server_chan / wecom
+      method: "push"
+      token: ""             # App Token
+      uid: ""               # 用户 UID
+      url: ""               # Webhook URL（企微用）
+  events:
+    - "task_complete"       # 任务完成
+    - "error"               # 异常告警
+    - "daily_report"        # 每日报告
+    - "stamina_low"         # 体力不足
+
+# ---------- 异常恢复配置 ----------
+recovery:
+  auto_restart: true        # 崩溃后自动重启
+  max_retry: 5              # 最大重启次数
+  network_wait: 30          # 网络等待超时（秒）
+  battle_timeout: 300       # 战斗超时（秒）
+
+# ---------- 日志配置 ----------
+logging:
+  level: "INFO"             # 日志级别: DEBUG / INFO / WARNING / ERROR
+  file: "logs/yys.log"      # 日志文件路径
+  max_size: 10              # 单文件最大 MB
+  backup_count: 7           # 保留文件数

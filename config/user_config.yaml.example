@@ -1,0 +1,64 @@
+# ============================================================
+# 阴阳师辅助脚本 - 用户配置文件
+# 复制此文件为 user_config.yaml 并修改
+# 只需填写需要覆盖的配置项，未填写的将使用默认值
+# ============================================================
+
+# ---------- 设备配置 ----------
+# 如需指定设备，取消注释并填写序列号
+# device:
+#   serial: "YOUR_DEVICE_SERIAL"
+#   adb_path: "adb"
+
+# ---------- 体力管理 ----------
+# stamina:
+#   auto_use_sushi: true
+#   max_daily_sushi: 10
+#   min_threshold: 100
+
+# ---------- 任务配置 ----------
+# 按需启用/禁用任务，修改层数和次数
+# tasks:
+#   - enabled: true
+#     priority: 1
+#     max_retry: 3
+#     count: 30
+#     layer: 10
+#     type: "orochi"
+#
+#   - enabled: true
+#     priority: 3
+#     max_retry: 3
+#     count: 20
+#     layer: 8
+#     type: "awake"
+
+# ---------- 调度器 ----------
+# scheduler:
+#   enabled: true
+#   start_time: "08:00"
+#   end_time: "23:00"
+
+# ---------- 通知配置 ----------
+# 配置微信推送通知
+# notify:
+#   enabled: true
+#   channels:
+#     - type: "wxpusher"
+#       method: "push"
+#       token: "YOUR_APP_TOKEN"
+#       uid: "YOUR_UID"
+#       url: ""
+#   events:
+#     - "task_complete"
+#     - "error"
+#     - "daily_report"
+
+# ---------- 异常恢复 ----------
+# recovery:
+#   auto_restart: true
+#   max_retry: 5
+
+# ---------- 日志 ----------
+# logging:
+#   level: "INFO"
