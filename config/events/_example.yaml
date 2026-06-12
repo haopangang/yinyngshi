@@ -1,0 +1,135 @@
+# ===========================================================================
+# 活动模板示例（请勿直接修改此文件，复制并重命名为 your_event.yaml）
+#
+# 文件命名规则：
+#   - 正式活动文件：不以 _ 开头，如 spring_event.yaml
+#   - 模板/示例文件：以 _ 开头，如 _example.yaml（自动跳过）
+#
+# 模板图片存放位置：assets/templates/events/<活动名>/
+# ===========================================================================
+
+# 活动基本信息
+name: "示例活动"              # 活动名称（必填，用于日志和注册）
+description: "新春祈福活动"    # 活动描述
+enabled: true                 # 是否启用（false 则跳过）
+
+# 活动时间范围（可选，不填则永久有效）
+start_date: "2024-01-01"      # 活动开始日期（YYYY-MM-DD）
+end_date: "2024-01-15"        # 活动结束日期（YYYY-MM-DD）
+
+# ---------------------------------------------------------------------------
+# 任务限制
+# ---------------------------------------------------------------------------
+limits:
+  daily_count: 30             # 每日最大执行次数
+  stamina_cost: 0             # 每次体力消耗（0 = 不消耗体力）
+
+# ---------------------------------------------------------------------------
+# 剩余次数识别（OCR 读取，可选）
+# ---------------------------------------------------------------------------
+remaining_count:
+  enabled: true               # 是否启用 OCR 次数检测
+  roi: [0.7, 0.05, 0.95, 0.12]  # 归一化坐标区域 [x1, y1, x2, y2]
+  pattern: "(\\d+)/\\d+"         # 正则表达式，第一组为当前剩余次数
+
+# ---------------------------------------------------------------------------
+# 停止条件（满足任一即停止，可选）
+# ---------------------------------------------------------------------------
+stop_conditions:
+  # 条件1：OCR 读取到剩余次数为 0
+  - type: count_zero
+
+  # 条件2：检测到特定图片（如"次数已用完"弹窗）
+  - type: template_match
+    template: "events/example/no_chance.png"
+    threshold: 0.85
+
+  # 条件3：按钮变灰（对比灰色模板图片）
+  - type: button_disabled
+    template: "events/example/btn_disabled.png"
+
+  # 条件4：超时保护（防止无限执行）
+  - type: timeout
+    minutes: 60
+
+# ---------------------------------------------------------------------------
+# 导航步骤（从主界面到活动入口，可选）
+# ---------------------------------------------------------------------------
+navigation:
+  - action: click_template
+    template: "events/example/entry.png"
+    wait: 2                   # 点击后等待秒数
+  - action: click_template
+    template: "events/example/sub_entry.png"
+    wait: 1
+
+# ---------------------------------------------------------------------------
+# 执行步骤（一轮完整操作，必填）
+# ---------------------------------------------------------------------------
+steps:
+  # 步骤1：点击挑战按钮
+  - action: click_template
+    template: "events/example/challenge_btn.png"
+    description: "点击挑战"
+    wait: 1
+
+  # 步骤2：等待战斗结束画面
+  - action: wait_template
+    template: "events/example/battle_end.png"
+    timeout: 120              # 最长等待 120 秒
+    description: "等待战斗结束"
+
+  # 步骤3：确认奖励
+  - action: click_template
+    template: "events/example/reward_confirm.png"
+    wait: 2
+    description: "确认奖励"
+
+  # 步骤4：短暂等待返回
+  - action: wait
+    seconds: 1
+    description: "等待返回"
+
+# ===========================================================================
+# 更多 action 类型示例（按需使用）
+# ===========================================================================
+
+# click_position — 点击指定坐标
+# - action: click_position
+#   x: 540                    # 像素坐标
+#   y: 960
+#   wait: 1
+
+# click_position（归一化坐标）
+# - action: click_position
+#   x: 0.5                    # 归一化坐标 (0~1)
+#   y: 0.8
+#   normalized: true
+#   wait: 1
+
+# wait_template_disappear — 等待某图片消失
+# - action: wait_template_disappear
+#   template: "events/example/loading.png"
+#   timeout: 30
+#   description: "等待加载消失"
+
+# swipe — 滑动操作
+# - action: swipe
+#   x1: 540
+#   y1: 1200
+#   x2: 540
+#   y2: 600
+#   duration: 0.5
+#   wait: 1
+
+# ocr_check — OCR 读取并判断
+# - action: ocr_check
+#   text: "挑战"
+#   expect: "挑战"            # 可选，检查 OCR 结果是否包含此文字
+#   region: [0.4, 0.8, 0.6, 0.9]
+
+# click_ocr — 识别文字并点击
+# - action: click_ocr
+#   text: "确定"
+#   region: [0.3, 0.4, 0.7, 0.6]
+#   wait: 1
