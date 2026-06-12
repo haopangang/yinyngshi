@@ -1,0 +1,64 @@
+# assets/templates/common/_manifest.yaml
+# 通用模板清单 - 跨场景复用的按钮和图标
+#
+# 状态说明：
+#   TODO  - 待截取
+#   READY - 已截取可用
+
+templates:
+  # === 通用按钮 ===
+  - name: accept_btn.png
+    description: "通用确认/接受按钮"
+    status: TODO
+    threshold: 0.85
+    tags: [button, confirm, accept]
+
+  - name: cancel_btn.png
+    description: "通用取消按钮"
+    status: TODO
+    threshold: 0.85
+    tags: [button, cancel]
+
+  - name: close_btn.png
+    description: "通用关闭按钮（X）"
+    status: TODO
+    threshold: 0.85
+    tags: [button, close]
+
+  - name: back_btn.png
+    description: "通用返回按钮"
+    status: TODO
+    threshold: 0.85
+    tags: [button, back]
+
+  - name: start_btn.png
+    description: "开始/挑战按钮"
+    status: TODO
+    threshold: 0.80
+    tags: [button, start, battle]
+
+  # === 场景特征 ===
+  - name: loading_logo.png
+    description: "加载界面 Logo"
+    status: TODO
+    threshold: 0.75
+    tags: [scene, loading]
+
+  - name: main_screen_btn.png
+    description: "主界面（庭院）特征按钮"
+    status: TODO
+    threshold: 0.80
+    tags: [scene, main]
+
+  # === 弹窗 ===
+  - name: popup_network_retry.png
+    description: "网络异常重试弹窗"
+    status: TODO
+    threshold: 0.80
+    tags: [popup, network, error]
+
+  - name: popup_update_confirm.png
+    description: "更新确认弹窗"
+    status: TODO
+    threshold: 0.80
+    tags: [popup, update]
