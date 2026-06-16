@@ -55,3 +55,8 @@ Thumbs.db
 
 # uv
 uv.lock
+
+# Test artifacts
+test_*.png
+test_vision_quick.py
+screenshot.png
